@@ -1,86 +1,72 @@
-# UpStartInterns Task 02 – REST API with Express
+# UpStartInterns Task 03 – CRUD App on a Database
 
-## Objective
-
-Build a REST API with Express that supports the four standard operations over one resource.
-
-## Resource
-
-The API uses a `tasks` resource.
-
-### Endpoints
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/tasks` | Get all tasks |
-| GET | `/api/tasks/:id` | Get one task |
-| POST | `/api/tasks` | Create a task |
-| PUT | `/api/tasks/:id` | Update a task |
-| DELETE | `/api/tasks/:id` | Delete a task |
+A full-stack CRUD assignment manager built with Express, SQLite, HTML, CSS and JavaScript.
 
 ## Requirements Covered
 
-- GET, POST, PUT and DELETE routes
-- JSON request and JSON response
-- Correct status codes
-- 400 validation responses
-- 404 response for missing records
-- Express JSON middleware
-- API can be tested using Postman or curl
+- Designed database schema using SQLite
+- Frontend communicates with an Express REST API
+- GET, POST, PUT and DELETE operations
+- Input validation before database storage
+- Persistent data stored in `tasks.db`
+- Changes survive server/browser restart
+- Responsive frontend
+- Edit, complete and delete actions
 
-## Run locally
+## Project Structure
+
+```text
+upstartinterns-task03-crud-database/
+├── server.js
+├── package.json
+├── README.md
+├── .gitignore
+└── public/
+    ├── index.html
+    ├── style.css
+    └── app.js
+```
+
+## Database Schema
+
+The `tasks` table contains:
+
+- `id` – primary key
+- `title` – assignment title
+- `subject` – subject/category
+- `priority` – Low, Medium or High
+- `completed` – 0 or 1
+- `created_at` – creation timestamp
+
+The database is automatically created as `tasks.db` when the server starts.
+
+## Run
 
 ```bash
 npm install
 npm start
 ```
 
-The server starts at:
+Open:
 
 ```text
 http://localhost:3000
 ```
 
-## Example JSON for POST
+## API Endpoints
 
-```json
-{
-  "title": "Learn REST API",
-  "status": "pending"
-}
-```
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/tasks` | Read all tasks |
+| GET | `/api/tasks/:id` | Read one task |
+| POST | `/api/tasks` | Create a task |
+| PUT | `/api/tasks/:id` | Update a task |
+| DELETE | `/api/tasks/:id` | Delete a task |
 
-## Example JSON for PUT
+## Persistence Test
 
-```json
-{
-  "title": "Learn Express REST API",
-  "status": "completed"
-}
-```
-
-## Test with curl
-
-### GET
-
-```bash
-curl http://localhost:3000/api/tasks
-```
-
-### POST
-
-```bash
-curl -X POST http://localhost:3000/api/tasks -H "Content-Type: application/json" -d "{"title":"Practice Express","status":"pending"}"
-```
-
-### PUT
-
-```bash
-curl -X PUT http://localhost:3000/api/tasks/1 -H "Content-Type: application/json" -d "{"title":"Updated task","status":"completed"}"
-```
-
-### DELETE
-
-```bash
-curl -X DELETE http://localhost:3000/api/tasks/1
-```
+1. Add an assignment.
+2. Stop the server.
+3. Start the server again.
+4. Open the application.
+5. The assignment remains because it is stored in SQLite.

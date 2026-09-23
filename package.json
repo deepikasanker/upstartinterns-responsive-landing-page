@@ -1,13 +1,13 @@
 {
-  "name": "upstartinterns-task02-rest-api",
+  "name": "upstartinterns-task03-crud-database",
   "version": "1.0.0",
-  "description": "REST API with Express - UpStartInterns Task 02",
+  "description": "CRUD app with Express and SQLite - UpStartInterns Task 03",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
+    "better-sqlite3": "^11.7.0",
     "express": "^5.1.0"
   }
 }
